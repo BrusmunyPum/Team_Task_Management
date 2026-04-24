@@ -51,14 +51,17 @@ export function Sidebar() {
         ))}
       </nav>
 
-      <div className="sidebar-note">
-        <span className="nav-icon" aria-hidden="true">
-          <AppIcon name="home" />
-        </span>
-        <div>
-          <strong>Website Home</strong>
-          <Link href={routes.login}>Logout</Link>
-        </div>
+      <div className="sidebar-user">
+        <Link href={routes.profile} className="sidebar-user-info">
+          <span className="avatar">MC</span>
+          <div>
+            <strong>Maya Chen</strong>
+            <small>Owner</small>
+          </div>
+        </Link>
+        <Link href={routes.login} className="icon-button" aria-label="Logout" title="Logout">
+          <AppIcon name="login" />
+        </Link>
       </div>
     </aside>
   );

@@ -1,4 +1,3 @@
-import { ActionModalButton } from "@/components/ui/ActionModalButton";
 import { AppIcon } from "@/components/ui/AppIcon";
 import { teamMembers } from "@/lib/mock-data";
 
@@ -11,7 +10,6 @@ export default function MembersPage() {
             <p className="eyebrow">Organization members</p>
             <h2>Roles and access</h2>
           </div>
-          <ActionModalButton action="member" />
         </div>
 
         <div className="table-wrap">

@@ -28,10 +28,6 @@ export function TaskBoardClient() {
             <p className="eyebrow">Kanban</p>
             <h2>Task status workflow</h2>
           </div>
-          <button className="primary-action" type="button" onClick={() => setIsModalOpen(true)}>
-            <AppIcon name="addTask" />
-            New Task
-          </button>
         </div>
 
         <div className="toolbar">

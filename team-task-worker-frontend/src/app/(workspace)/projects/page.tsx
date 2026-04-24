@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { AppIcon } from "@/components/ui/AppIcon";
-import { ActionModalButton } from "@/components/ui/ActionModalButton";
 import { projects, teamMembers } from "@/lib/mock-data";
 
 export default function ProjectsPage() {
@@ -11,7 +10,6 @@ export default function ProjectsPage() {
           <p className="eyebrow">Project list</p>
           <h2>All active delivery work</h2>
         </div>
-        <ActionModalButton action="project" />
       </div>
 
       <div className="toolbar">

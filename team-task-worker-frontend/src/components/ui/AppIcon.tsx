@@ -9,6 +9,7 @@ export type AppIconName =
   | "error"
   | "folder"
   | "folderOff"
+  | "globe"
   | "groupAdd"
   | "groups"
   | "home"
@@ -77,6 +78,13 @@ const paths: Record<AppIconName, React.ReactNode> = {
       <path d="m3 3 18 18" />
       <path d="M3 7a3 3 0 0 1 3-3h4l2 3h6a3 3 0 0 1 3 3v7" />
       <path d="M18 20H6a3 3 0 0 1-3-3v-7" />
+    </>
+  ),
+  globe: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3.6 9h16.8M3.6 15h16.8" />
+      <path d="M12 3a15.3 15.3 0 0 1 4 9 15.3 15.3 0 0 1-4 9 15.3 15.3 0 0 1-4-9 15.3 15.3 0 0 1 4-9Z" />
     </>
   ),
   groupAdd: (
