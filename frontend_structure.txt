@@ -1,0 +1,190 @@
+Team_Task_Worker_project/
+│
+├── prototype/
+│   ├── index.html
+│   ├── pages/
+│   └── assets/
+│
+├── frontend/
+│   ├── public/
+│   │   ├── images/
+│   │   └── icons/
+│   │
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── layout.tsx
+│   │   │   ├── page.tsx
+│   │   │   ├── globals.css
+│   │   │   ├── loading.tsx
+│   │   │   ├── error.tsx
+│   │   │   ├── not-found.tsx
+│   │   │   │
+│   │   │   ├── (auth)/
+│   │   │   │   ├── login/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── register/
+│   │   │   │       └── page.tsx
+│   │   │   │
+│   │   │   ├── (onboarding)/
+│   │   │   │   └── onboarding/
+│   │   │   │       └── page.tsx
+│   │   │   │
+│   │   │   └── (workspace)/
+│   │   │       ├── layout.tsx
+│   │   │       ├── dashboard/
+│   │   │       │   └── page.tsx
+│   │   │       ├── projects/
+│   │   │       │   ├── page.tsx
+│   │   │       │   └── [projectId]/
+│   │   │       │       └── page.tsx
+│   │   │       ├── tasks/
+│   │   │       │   ├── page.tsx
+│   │   │       │   └── [taskId]/
+│   │   │       │       └── page.tsx
+│   │   │       ├── members/
+│   │   │       │   └── page.tsx
+│   │   │       └── settings/
+│   │   │           └── profile/
+│   │   │               └── page.tsx
+│   │   │
+│   │   ├── components/
+│   │   │   ├── ui/
+│   │   │   │   ├── Button.tsx
+│   │   │   │   ├── Card.tsx
+│   │   │   │   ├── Input.tsx
+│   │   │   │   ├── Modal.tsx
+│   │   │   │   ├── Badge.tsx
+│   │   │   │   ├── Avatar.tsx
+│   │   │   │   └── EmptyState.tsx
+│   │   │   │
+│   │   │   ├── layout/
+│   │   │   │   ├── AppShell.tsx
+│   │   │   │   ├── Sidebar.tsx
+│   │   │   │   ├── Topbar.tsx
+│   │   │   │   ├── MobileNav.tsx
+│   │   │   │   └── PageHeader.tsx
+│   │   │   │
+│   │   │   └── feedback/
+│   │   │       ├── LoadingSpinner.tsx
+│   │   │       ├── ErrorMessage.tsx
+│   │   │       └── ConfirmDialog.tsx
+│   │   │
+│   │   ├── features/
+│   │   │   ├── auth/
+│   │   │   │   ├── components/
+│   │   │   │   │   ├── LoginForm.tsx
+│   │   │   │   │   └── RegisterForm.tsx
+│   │   │   │   ├── services/
+│   │   │   │   │   └── auth.service.ts
+│   │   │   │   ├── types/
+│   │   │   │   │   └── auth.types.ts
+│   │   │   │   └── mock/
+│   │   │   │       └── auth.mock.ts
+│   │   │   │
+│   │   │   ├── dashboard/
+│   │   │   │   ├── components/
+│   │   │   │   │   ├── DashboardStats.tsx
+│   │   │   │   │   ├── RecentTasks.tsx
+│   │   │   │   │   └── ProjectProgress.tsx
+│   │   │   │   ├── services/
+│   │   │   │   │   └── dashboard.service.ts
+│   │   │   │   └── types/
+│   │   │   │       └── dashboard.types.ts
+│   │   │   │
+│   │   │   ├── organizations/
+│   │   │   │   ├── components/
+│   │   │   │   │   ├── OrganizationSwitcher.tsx
+│   │   │   │   │   └── OrganizationForm.tsx
+│   │   │   │   ├── services/
+│   │   │   │   │   └── organization.service.ts
+│   │   │   │   └── types/
+│   │   │   │       └── organization.types.ts
+│   │   │   │
+│   │   │   ├── projects/
+│   │   │   │   ├── components/
+│   │   │   │   │   ├── ProjectCard.tsx
+│   │   │   │   │   ├── ProjectList.tsx
+│   │   │   │   │   ├── ProjectForm.tsx
+│   │   │   │   │   └── ProjectStatusBadge.tsx
+│   │   │   │   ├── services/
+│   │   │   │   │   └── project.service.ts
+│   │   │   │   ├── types/
+│   │   │   │   │   └── project.types.ts
+│   │   │   │   └── mock/
+│   │   │   │       └── projects.mock.ts
+│   │   │   │
+│   │   │   ├── tasks/
+│   │   │   │   ├── components/
+│   │   │   │   │   ├── TaskTable.tsx
+│   │   │   │   │   ├── TaskCard.tsx
+│   │   │   │   │   ├── TaskBoard.tsx
+│   │   │   │   │   ├── TaskForm.tsx
+│   │   │   │   │   ├── TaskFilters.tsx
+│   │   │   │   │   ├── TaskPriorityBadge.tsx
+│   │   │   │   │   └── TaskStatusBadge.tsx
+│   │   │   │   ├── services/
+│   │   │   │   │   └── task.service.ts
+│   │   │   │   ├── types/
+│   │   │   │   │   └── task.types.ts
+│   │   │   │   └── mock/
+│   │   │   │       └── tasks.mock.ts
+│   │   │   │
+│   │   │   ├── comments/
+│   │   │   │   ├── components/
+│   │   │   │   │   ├── CommentList.tsx
+│   │   │   │   │   └── CommentForm.tsx
+│   │   │   │   ├── services/
+│   │   │   │   │   └── comment.service.ts
+│   │   │   │   ├── types/
+│   │   │   │   │   └── comment.types.ts
+│   │   │   │   └── mock/
+│   │   │   │       └── comments.mock.ts
+│   │   │   │
+│   │   │   └── members/
+│   │   │       ├── components/
+│   │   │       │   ├── MemberTable.tsx
+│   │   │       │   ├── MemberRoleBadge.tsx
+│   │   │       │   └── InviteMemberForm.tsx
+│   │   │       ├── services/
+│   │   │       │   └── member.service.ts
+│   │   │       ├── types/
+│   │   │       │   └── member.types.ts
+│   │   │       └── mock/
+│   │   │           └── members.mock.ts
+│   │   │
+│   │   ├── lib/
+│   │   │   ├── api-client.ts
+│   │   │   ├── mock-api.ts
+│   │   │   ├── auth.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── routes.ts
+│   │   │   └── utils.ts
+│   │   │
+│   │   ├── hooks/
+│   │   │   ├── useDebounce.ts
+│   │   │   ├── useLocalStorage.ts
+│   │   │   └── useDisclosure.ts
+│   │   │
+│   │   ├── styles/
+│   │   │   └── theme.css
+│   │   │
+│   │   └── types/
+│   │       ├── common.types.ts
+│   │       ├── api.types.ts
+│   │       └── permission.types.ts
+│   │
+│   ├── .env.example
+│   ├── package.json
+│   ├── next.config.ts
+│   ├── tsconfig.json
+│   └── README.md
+│
+├── backend/
+│   └── later...
+│
+├── docs/
+│   ├── project.md
+│   ├── requirements.md
+│   └── architecture.md
+│
+└── README.md
