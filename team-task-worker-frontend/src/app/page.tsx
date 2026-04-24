@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { PrototypeHubClient } from "@/features/reference/components/PrototypeHubClient";
 
 export default function HomePage() {
-  redirect("/dashboard");
+  return <PrototypeHubClient />;
 }

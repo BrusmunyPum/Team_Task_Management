@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TeamTask Pro Frontend
+
+Static/mock Next.js frontend for the Team Task & Project Management System.
+
+This app ports the old HTML/CSS/JS reference UI into a structured Next.js frontend with mock data, reusable components, feature folders, and routes ready for future FastAPI integration.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies, then run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Main Routes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/` prototype hub copied from the old static UI
+- `/login`, `/register`, `/onboarding`
+- `/dashboard`
+- `/projects`, `/projects/[projectId]`
+- `/tasks`, `/tasks/[taskId]`
+- `/members`
+- `/analytics`, `/calendar`, `/workload`, `/files`, `/automation`, `/clients`
+- `/reference/[slug]` preview pages for old extra static screens
 
-## Learn More
+## Mock Data
 
-To learn more about Next.js, take a look at the following resources:
+Mock projects, tasks, members, activity, files, events, automations, and client reviews live in:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+src/lib/mock-data.ts
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Future backend integration should replace the mock service calls in:
 
-## Deploy on Vercel
+```text
+src/lib/mock-api.ts
+src/features/*/services/*.ts
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Checks
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm lint
+pnpm build
+```
