@@ -25,14 +25,14 @@ export default function MembersPage() {
             <tbody>
               {teamMembers.map((member) => (
                 <tr key={member.email}>
-                  <td>
+                  <td data-label="Name">
                     <span className="person-cell">
                       <span className={`avatar ${member.tone}`}>{member.initials}</span>
                       {member.name}
                     </span>
                   </td>
-                  <td>{member.email}</td>
-                  <td>
+                  <td data-label="Email">{member.email}</td>
+                  <td data-label="Role">
                     <span
                       className={`pill ${
                         member.role === "Owner"
@@ -45,7 +45,7 @@ export default function MembersPage() {
                       {member.role}
                     </span>
                   </td>
-                  <td>{member.joined}</td>
+                  <td data-label="Joined">{member.joined}</td>
                 </tr>
               ))}
             </tbody>
@@ -77,28 +77,28 @@ export default function MembersPage() {
             </thead>
             <tbody>
               <tr>
-                <td>Manage organization</td>
-                <td>Yes</td>
-                <td>No</td>
-                <td>No</td>
+                <td data-label="Action">Manage organization</td>
+                <td data-label="Owner">Yes</td>
+                <td data-label="Admin">No</td>
+                <td data-label="Member">No</td>
               </tr>
               <tr>
-                <td>Manage members</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>No</td>
+                <td data-label="Action">Manage members</td>
+                <td data-label="Owner">Yes</td>
+                <td data-label="Admin">Yes</td>
+                <td data-label="Member">No</td>
               </tr>
               <tr>
-                <td>Create projects</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>No</td>
+                <td data-label="Action">Create projects</td>
+                <td data-label="Owner">Yes</td>
+                <td data-label="Admin">Yes</td>
+                <td data-label="Member">No</td>
               </tr>
               <tr>
-                <td>Update assigned tasks</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>Yes</td>
+                <td data-label="Action">Update assigned tasks</td>
+                <td data-label="Owner">Yes</td>
+                <td data-label="Admin">Yes</td>
+                <td data-label="Member">Yes</td>
               </tr>
             </tbody>
           </table>

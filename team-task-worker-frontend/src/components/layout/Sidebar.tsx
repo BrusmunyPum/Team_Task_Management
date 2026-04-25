@@ -19,6 +19,7 @@ const navigationItems = [
   { label: "Files", icon: "folder", href: routes.files },
   { label: "Automation", icon: "rocket", href: routes.automation },
   { label: "Clients", icon: "workspace", href: routes.clients },
+  { label: "References", icon: "folder", href: routes.reference },
 ] as const;
 
 export function Sidebar() {
@@ -46,7 +47,7 @@ export function Sidebar() {
             <span className="nav-icon" aria-hidden="true">
               <AppIcon name={item.icon} />
             </span>
-            {item.label}
+            <span className="nav-label">{item.label}</span>
           </Link>
         ))}
       </nav>

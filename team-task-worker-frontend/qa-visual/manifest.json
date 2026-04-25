@@ -1,0 +1,130 @@
+{
+  "shots": [
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "route": "dashboard",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\phone-dashboard.png"
+    },
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "route": "tasks",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\phone-tasks.png"
+    },
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "route": "members",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\phone-members.png"
+    },
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "route": "profile",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\phone-profile.png"
+    },
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "route": "onboarding",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\phone-onboarding.png"
+    },
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "route": "reference",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\phone-reference.png"
+    },
+    {
+      "name": "tablet",
+      "width": 834,
+      "height": 1112,
+      "route": "dashboard",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\tablet-dashboard.png"
+    },
+    {
+      "name": "tablet",
+      "width": 834,
+      "height": 1112,
+      "route": "tasks",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\tablet-tasks.png"
+    },
+    {
+      "name": "tablet",
+      "width": 834,
+      "height": 1112,
+      "route": "members",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\tablet-members.png"
+    },
+    {
+      "name": "tablet",
+      "width": 834,
+      "height": 1112,
+      "route": "profile",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\tablet-profile.png"
+    },
+    {
+      "name": "tablet",
+      "width": 834,
+      "height": 1112,
+      "route": "onboarding",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\tablet-onboarding.png"
+    },
+    {
+      "name": "tablet",
+      "width": 834,
+      "height": 1112,
+      "route": "reference",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\tablet-reference.png"
+    },
+    {
+      "name": "laptop",
+      "width": 1440,
+      "height": 900,
+      "route": "dashboard",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\laptop-dashboard.png"
+    },
+    {
+      "name": "laptop",
+      "width": 1440,
+      "height": 900,
+      "route": "tasks",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\laptop-tasks.png"
+    },
+    {
+      "name": "laptop",
+      "width": 1440,
+      "height": 900,
+      "route": "members",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\laptop-members.png"
+    },
+    {
+      "name": "laptop",
+      "width": 1440,
+      "height": 900,
+      "route": "profile",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\laptop-profile.png"
+    },
+    {
+      "name": "laptop",
+      "width": 1440,
+      "height": 900,
+      "route": "onboarding",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\laptop-onboarding.png"
+    },
+    {
+      "name": "laptop",
+      "width": 1440,
+      "height": 900,
+      "route": "reference",
+      "file": "D:\\DATA\\Project\\team_task_manager\\team-task-worker-frontend\\qa-visual\\laptop-reference.png"
+    }
+  ]
+}

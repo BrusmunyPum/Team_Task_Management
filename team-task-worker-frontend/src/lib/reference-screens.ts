@@ -1,0 +1,88 @@
+export const referenceScreens = [
+  {
+    slug: "dashboard-overview",
+    title: "Dashboard Overview",
+    image: "/images/previews/dashboard_overview.png",
+    category: "Workspace",
+    description: "Executive workspace summary with task flow, deadlines, and recent team movement.",
+  },
+  {
+    slug: "project-kanban-board",
+    title: "Project Kanban Board",
+    image: "/images/previews/project_kanban_board.png",
+    category: "Tasks",
+    description: "Task board reference with status lanes, priority badges, owners, and progress cards.",
+  },
+  {
+    slug: "my-tasks-overview",
+    title: "My Tasks Overview",
+    image: "/images/previews/my_tasks_overview.png",
+    category: "Tasks",
+    description: "Personal task queue with priority, due dates, ownership, and task state summaries.",
+  },
+  {
+    slug: "task-details-view",
+    title: "Task Details View",
+    image: "/images/previews/task_details_view.png",
+    category: "Tasks",
+    description: "Task detail page with metadata, progress, comments, attachments, and activity.",
+  },
+  {
+    slug: "team-schedule-calendar",
+    title: "Team Schedule Calendar",
+    image: "/images/previews/team_schedule_calendar.png",
+    category: "Planning",
+    description: "Schedule view for deadlines, reviews, demos, and team-owned calendar events.",
+  },
+  {
+    slug: "project-timeline-gantt",
+    title: "Project Timeline Gantt",
+    image: "/images/previews/project_timeline_gantt.png",
+    category: "Planning",
+    description: "Roadmap and milestone reference for long-running project delivery.",
+  },
+  {
+    slug: "analytics-reports",
+    title: "Analytics Reports",
+    image: "/images/previews/analytics_reports.png",
+    category: "Reports",
+    description: "Reporting page with project velocity, task mix, and recent activity.",
+  },
+  {
+    slug: "team-workload-management",
+    title: "Team Workload Management",
+    image: "/images/previews/team_workload_management.png",
+    category: "Team",
+    description: "Capacity planning reference for workload, assignments, and overloaded members.",
+  },
+  {
+    slug: "file-asset-library",
+    title: "File Asset Library",
+    image: "/images/previews/file_asset_library.png",
+    category: "Assets",
+    description: "Shared asset library for documents, uploads, owners, and update history.",
+  },
+  {
+    slug: "automation-engine",
+    title: "Automation Engine",
+    image: "/images/previews/automation_engine.png",
+    category: "Automation",
+    description: "Workflow rule builder reference for reminders, notifications, and generated checklists.",
+  },
+  {
+    slug: "client-review-portal",
+    title: "Client Review Portal",
+    image: "/images/previews/client_review_portal.png",
+    category: "Clients",
+    description: "Client-facing review queue for approval, feedback, and status history.",
+  },
+  {
+    slug: "user-onboarding",
+    title: "User Onboarding",
+    image: "/images/previews/user_onboarding.png",
+    category: "Onboarding",
+    description: "Workspace setup flow with organization creation, invites, and first project setup.",
+  },
+] as const;
+
+export type ReferenceScreen = (typeof referenceScreens)[number];

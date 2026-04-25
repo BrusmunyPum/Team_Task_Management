@@ -1,3 +1,4 @@
+import { MobileNav } from "@/components/layout/MobileNav";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Topbar } from "@/components/layout/Topbar";
 
@@ -13,6 +14,7 @@ export function AppShell({ children }: AppShellProps) {
         <Topbar />
         {children}
       </main>
+      <MobileNav />
     </div>
   );
 }

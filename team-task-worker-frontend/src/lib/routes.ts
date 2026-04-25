@@ -16,6 +16,7 @@ export const routes = {
   files: "/files",
   automation: "/automation",
   clients: "/clients",
+  reference: "/reference",
   profile: "/settings/profile",
   workspaceSettings: "/settings/workspace",
 } as const;

@@ -74,7 +74,7 @@ export default function FilesPage() {
           <tbody>
             {filteredFiles.map(([name, file, owner, updated]) => (
               <tr key={file}>
-                <td>
+                <td data-label="Name">
                   <span className="person-cell">
                     <span className="nav-icon">
                       <AppIcon name="folder" />
@@ -82,9 +82,9 @@ export default function FilesPage() {
                     {name}
                   </span>
                 </td>
-                <td>{file}</td>
-                <td>{owner}</td>
-                <td>{updated}</td>
+                <td data-label="File">{file}</td>
+                <td data-label="Owner">{owner}</td>
+                <td data-label="Updated">{updated}</td>
               </tr>
             ))}
           </tbody>
