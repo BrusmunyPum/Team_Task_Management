@@ -4,23 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { routes } from "@/lib/routes";
 import { AppIcon } from "@/components/ui/AppIcon";
-
-const navigationItems = [
-  { label: "Dashboard", icon: "dashboard", href: routes.dashboard },
-  { label: "Projects", icon: "workspace", href: routes.projects },
-  { label: "Tasks", icon: "tasks", href: routes.tasks },
-  { label: "My Tasks", icon: "tasks", href: routes.myTasks },
-  { label: "Members", icon: "groups", href: routes.members },
-  { label: "Calendar", icon: "calendar", href: routes.calendar },
-  { label: "Timeline", icon: "calendar", href: routes.timeline },
-  { label: "Analytics", icon: "dashboard", href: routes.analytics },
-  { label: "Activity", icon: "playlistAdd", href: routes.activity },
-  { label: "Workload", icon: "groups", href: routes.workload },
-  { label: "Files", icon: "folder", href: routes.files },
-  { label: "Automation", icon: "rocket", href: routes.automation },
-  { label: "Clients", icon: "workspace", href: routes.clients },
-  { label: "References", icon: "folder", href: routes.reference },
-] as const;
+import { isActiveRoute, navigationGroups } from "@/lib/navigation";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -37,18 +21,29 @@ export function Sidebar() {
         </span>
       </Link>
 
-      <nav className="nav-list">
-        {navigationItems.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={pathname.startsWith(item.href) ? "active" : ""}
-          >
-            <span className="nav-icon" aria-hidden="true">
-              <AppIcon name={item.icon} />
-            </span>
-            <span className="nav-label">{item.label}</span>
-          </Link>
+      <nav className="nav-list" aria-label="Workspace sections">
+        {navigationGroups.map((group) => (
+          <section className="nav-group" key={group.label} aria-label={group.label}>
+            <p className="nav-group-label">{group.label}</p>
+            {group.items.map((item) => {
+              const active = isActiveRoute(pathname, item.href);
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={active ? "active" : ""}
+                  aria-current={active ? "page" : undefined}
+                >
+                  <span className="nav-icon" aria-hidden="true">
+                    <AppIcon name={item.icon} />
+                  </span>
+                  <span className="nav-label">{item.label}</span>
+                  {item.badge && <span className="nav-badge">{item.badge}</span>}
+                </Link>
+              );
+            })}
+          </section>
         ))}
       </nav>
 

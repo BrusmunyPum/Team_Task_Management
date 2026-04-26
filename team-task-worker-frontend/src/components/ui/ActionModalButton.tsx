@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { AppIcon, type AppIconName } from "@/components/ui/AppIcon";
 
 export type ActionKind =
@@ -19,6 +20,7 @@ type Field = {
   type?: "text" | "email" | "date" | "textarea" | "select";
   defaultValue?: string;
   options?: string[];
+  helper?: string;
 };
 
 type ActionConfig = {
@@ -39,10 +41,10 @@ const configs: Record<ActionKind, ActionConfig> = {
     submitLabel: "Save task",
     fields: [
       { label: "Title", defaultValue: "Write API error response contract" },
-      { label: "Description", type: "textarea", defaultValue: "Define shared error shapes before frontend integration." },
+      { label: "Description", type: "textarea", defaultValue: "Define shared error shapes before frontend integration.", helper: "Keep this short enough to scan from the task card." },
       { label: "Status", type: "select", defaultValue: "To do", options: ["To do", "In progress", "Review", "Done"] },
       { label: "Priority", type: "select", defaultValue: "Medium", options: ["Low", "Medium", "High", "Urgent"] },
-      { label: "Due date", type: "date", defaultValue: "2026-05-06" },
+      { label: "Due date", type: "date", defaultValue: "2026-05-06", helper: "Used for dashboard deadlines and board urgency." },
     ],
   },
   project: {
@@ -53,7 +55,7 @@ const configs: Record<ActionKind, ActionConfig> = {
     submitLabel: "Save project",
     fields: [
       { label: "Project name", defaultValue: "Frontend Integration" },
-      { label: "Description", type: "textarea", defaultValue: "Connect V1 screens to the Next.js frontend and API modules." },
+      { label: "Description", type: "textarea", defaultValue: "Connect V1 screens to the Next.js frontend and API modules.", helper: "One clear outcome for the project card." },
       { label: "Status", type: "select", defaultValue: "Active", options: ["Planning", "Active", "Review", "Archived"] },
       { label: "Due date", type: "date", defaultValue: "2026-05-14" },
     ],
@@ -65,7 +67,7 @@ const configs: Record<ActionKind, ActionConfig> = {
     icon: "groupAdd",
     submitLabel: "Send invite",
     fields: [
-      { label: "Email", type: "email", defaultValue: "teammate@teamtask.test" },
+      { label: "Email", type: "email", defaultValue: "teammate@teamtask.test", helper: "Invite will be prepared for this address." },
       { label: "Role", type: "select", defaultValue: "Member", options: ["Admin", "Member"] },
     ],
   },
@@ -153,7 +155,64 @@ export function ActionModalButton({
   label,
 }: ActionModalButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const config = configs[action];
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setIsMounted(true));
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  const modal = (
+    <div className="modal-backdrop" hidden={!isOpen} onClick={() => setIsOpen(false)}>
+      <section
+        className="task-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`${action}-modal-title`}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">{config.eyebrow}</p>
+            <h2 id={`${action}-modal-title`}>{config.title}</h2>
+          </div>
+          <button className="icon-button" type="button" aria-label="Close" onClick={() => setIsOpen(false)}>
+            <AppIcon name="close" />
+          </button>
+        </div>
+
+        <form className="task-form">
+          {config.fields.map((field) => (
+            <label key={field.label}>
+              <span className="field-label">{field.label}</span>
+              {field.type === "textarea" ? (
+                <textarea defaultValue={field.defaultValue} />
+              ) : field.type === "select" ? (
+                <select defaultValue={field.defaultValue}>
+                  {field.options?.map((option) => <option key={option}>{option}</option>)}
+                </select>
+              ) : (
+                <input type={field.type ?? "text"} defaultValue={field.defaultValue} />
+              )}
+              {field.helper && <small className="form-help">{field.helper}</small>}
+            </label>
+          ))}
+
+          <div className="modal-actions">
+            <button className="secondary-action" type="button" onClick={() => setIsOpen(false)}>
+              Cancel
+            </button>
+            <button className="primary-action" type="button" onClick={() => setIsOpen(false)}>
+              <AppIcon name="save" />
+              {config.submitLabel}
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+  );
 
   return (
     <>
@@ -162,52 +221,7 @@ export function ActionModalButton({
         {label ?? config.label}
       </button>
 
-      <div className="modal-backdrop" hidden={!isOpen} onClick={() => setIsOpen(false)}>
-        <section
-          className="task-modal"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby={`${action}-modal-title`}
-          onClick={(event) => event.stopPropagation()}
-        >
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">{config.eyebrow}</p>
-              <h2 id={`${action}-modal-title`}>{config.title}</h2>
-            </div>
-            <button className="icon-button" type="button" aria-label="Close" onClick={() => setIsOpen(false)}>
-              <AppIcon name="close" />
-            </button>
-          </div>
-
-          <form className="task-form">
-            {config.fields.map((field) => (
-              <label key={field.label}>
-                {field.label}
-                {field.type === "textarea" ? (
-                  <textarea defaultValue={field.defaultValue} />
-                ) : field.type === "select" ? (
-                  <select defaultValue={field.defaultValue}>
-                    {field.options?.map((option) => <option key={option}>{option}</option>)}
-                  </select>
-                ) : (
-                  <input type={field.type ?? "text"} defaultValue={field.defaultValue} />
-                )}
-              </label>
-            ))}
-
-            <div className="modal-actions">
-              <button className="secondary-action" type="button" onClick={() => setIsOpen(false)}>
-                Cancel
-              </button>
-              <button className="primary-action" type="button" onClick={() => setIsOpen(false)}>
-                <AppIcon name="save" />
-                {config.submitLabel}
-              </button>
-            </div>
-          </form>
-        </section>
-      </div>
+      {isMounted ? createPortal(modal, document.body) : null}
     </>
   );
 }

@@ -3,9 +3,32 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { AppIcon } from "@/components/ui/AppIcon";
+import { Avatar } from "@/components/ui/Avatar";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { tasks, teamMembers } from "@/lib/mock-data";
 
-const columnNames = ["To do", "In progress", "Review", "Done"] as const;
+const columns = [
+  { name: "To do", color: "var(--color-status-todo)" },
+  { name: "In progress", color: "var(--color-status-progress)" },
+  { name: "Review", color: "var(--color-status-review)" },
+  { name: "Done", color: "var(--color-status-done)" },
+] as const;
+
+function priorityTone(priority: string) {
+  if (priority === "High" || priority === "Urgent") {
+    return "danger";
+  }
+
+  if (priority === "Low") {
+    return "calm";
+  }
+
+  return "warning";
+}
+
+function isPastDue(dueDate: string) {
+  return new Date(dueDate) < new Date("2026-04-26T00:00:00");
+}
 
 export function TaskBoardClient() {
   const [query, setQuery] = useState("");
@@ -14,11 +37,17 @@ export function TaskBoardClient() {
   const normalizedQuery = query.trim().toLowerCase();
   const visibleCount = useMemo(
     () =>
-      tasks.filter((task) =>
-        `${task.title} ${task.description} ${task.priority}`.toLowerCase().includes(normalizedQuery),
-      ).length,
+      tasks.filter((task) => {
+        const assignee = teamMembers.find((member) => member.id === task.assigneeId);
+        const searchable = `${task.title} ${task.description} ${task.priority} ${assignee?.name ?? ""}`;
+
+        return searchable.toLowerCase().includes(normalizedQuery);
+      }).length,
     [normalizedQuery],
   );
+  const openCount = tasks.filter((task) => task.status !== "Done").length;
+  const reviewCount = tasks.filter((task) => task.status === "Review").length;
+  const highPriorityCount = tasks.filter((task) => ["High", "Urgent"].includes(task.priority)).length;
 
   return (
     <>
@@ -28,9 +57,14 @@ export function TaskBoardClient() {
             <p className="eyebrow">Kanban</p>
             <h2>Task status workflow</h2>
           </div>
+          <div className="section-summary">
+            <span>{openCount} open</span>
+            <span>{reviewCount} review</span>
+            <span>{highPriorityCount} high priority</span>
+          </div>
         </div>
 
-        <div className="toolbar">
+        <div className="toolbar board-toolbar">
           <label className="search">
             <AppIcon name="search" />
             <input
@@ -40,49 +74,87 @@ export function TaskBoardClient() {
               onChange={(event) => setQuery(event.target.value)}
             />
           </label>
+          {query && (
+            <button className="secondary-action board-clear-action" type="button" onClick={() => setQuery("")}>
+              <AppIcon name="close" />
+              Clear
+            </button>
+          )}
         </div>
 
-        <div className="board-grid">
-          {columnNames.map((column) => {
+        <div className="board-grid" aria-label="Task status columns">
+          {columns.map((column) => {
             const visibleTasks = tasks.filter(
-              (task) =>
-                task.status === column &&
-                (!normalizedQuery ||
-                  `${task.title} ${task.description} ${task.priority}`.toLowerCase().includes(normalizedQuery)),
+              (task) => {
+                const assignee = teamMembers.find((member) => member.id === task.assigneeId);
+                const searchable = `${task.title} ${task.description} ${task.priority} ${assignee?.name ?? ""}`;
+
+                return (
+                  task.status === column.name &&
+                  (!normalizedQuery || searchable.toLowerCase().includes(normalizedQuery))
+                );
+              },
             );
 
             return (
-              <section className="board-column" key={column}>
+              <section
+                className="board-column"
+                key={column.name}
+                aria-label={`${column.name} column, ${visibleTasks.length} tasks`}
+              >
                 <header>
-                  {column} <span>{visibleTasks.length}</span>
-                </header>
-                {visibleTasks.map((task) => (
-                  <article className="task-card" key={task.title}>
-                    <span className={`pill ${task.priority === "High" ? "danger" : task.priority === "Low" ? "calm" : "warning"}`}>
-                      {task.priority}
+                  <div>
+                    <span className="board-column-title">
+                      <i style={{ background: column.color }} aria-hidden="true" />
+                      {column.name}
                     </span>
-                    <h3>{task.title}</h3>
-                    <p>{task.description}</p>
-                    <div className="card-meta">
-                      <span className={`avatar ${teamMembers.find((member) => member.id === task.assigneeId)?.tone ?? ""}`}>
-                        {teamMembers.find((member) => member.id === task.assigneeId)?.initials}
-                      </span>
-                      <span className="pill neutral">{task.due}</span>
-                      <Link className="auth-link" href={`/tasks/${task.id}`}>
-                        Open
-                      </Link>
-                    </div>
-                  </article>
-                ))}
+                    <small>{visibleTasks.length === 1 ? "1 task" : `${visibleTasks.length} tasks`}</small>
+                  </div>
+                  <span>{visibleTasks.length}</span>
+                </header>
+                {visibleTasks.length === 0 && (
+                  <EmptyState title="No tasks here">Move work into this stage when it is ready.</EmptyState>
+                )}
+                {visibleTasks.map((task) => {
+                  const assignee = teamMembers.find((member) => member.id === task.assigneeId);
+                  const overdue = isPastDue(task.dueDate) && task.status !== "Done";
+
+                  return (
+                    <article className="task-card" key={task.id}>
+                      <span className={`task-priority-bar ${priorityTone(task.priority)}`} aria-hidden="true" />
+                      <div className="task-card-topline">
+                        <span className={`pill ${priorityTone(task.priority)}`}>{task.priority}</span>
+                        <span className={`task-due ${overdue ? "overdue" : ""}`}>
+                          <AppIcon name="calendar" />
+                          {task.due}
+                        </span>
+                      </div>
+                      <h3>{task.title}</h3>
+                      <p>{task.description}</p>
+                      <div className="task-progress" aria-label={`${task.progress}% complete`}>
+                        <span style={{ width: `${task.progress}%` }} />
+                      </div>
+                      <div className="task-card-progress-label">
+                        <span>{task.progress}% complete</span>
+                        <span>{task.status}</span>
+                      </div>
+                      <div className="card-meta">
+                        {assignee && <Avatar name={assignee.name} size="sm" tone={assignee.tone} />}
+                        <span className="task-card-stat">{task.comments} comments</span>
+                        <span className="task-card-stat">{task.attachments} files</span>
+                        <Link className="auth-link" href={`/tasks/${task.id}`}>
+                          Open
+                        </Link>
+                      </div>
+                    </article>
+                  );
+                })}
               </section>
             );
           })}
         </div>
 
-        <p className="empty-state" hidden={visibleCount > 0}>
-          <AppIcon name="searchOff" />
-          No tasks match that search.
-        </p>
+        {visibleCount === 0 && <EmptyState title="No matching tasks">Try a task title, priority, or assignee name.</EmptyState>}
       </section>
 
       <div className="modal-backdrop" hidden={!isModalOpen} onClick={() => setIsModalOpen(false)}>

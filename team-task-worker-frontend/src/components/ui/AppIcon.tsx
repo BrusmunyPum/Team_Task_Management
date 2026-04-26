@@ -2,6 +2,7 @@ export type AppIconName =
   | "add"
   | "addBox"
   | "addTask"
+  | "bell"
   | "calendar"
   | "check"
   | "close"
@@ -15,6 +16,7 @@ export type AppIconName =
   | "home"
   | "hub"
   | "login"
+  | "more"
   | "personAdd"
   | "playlistAdd"
   | "rocket"
@@ -42,6 +44,12 @@ const paths: Record<AppIconName, React.ReactNode> = {
       <rect width="16" height="16" x="4" y="4" rx="3" />
       <path d="M12 8v8M8 12h8" />
       <path d="M7 18h10" />
+    </>
+  ),
+  bell: (
+    <>
+      <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
+      <path d="M10 21h4" />
     </>
   ),
   calendar: (
@@ -124,6 +132,13 @@ const paths: Record<AppIconName, React.ReactNode> = {
       <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
       <path d="m10 17 5-5-5-5" />
       <path d="M15 12H3" />
+    </>
+  ),
+  more: (
+    <>
+      <circle cx="5" cy="12" r="1.5" />
+      <circle cx="12" cy="12" r="1.5" />
+      <circle cx="19" cy="12" r="1.5" />
     </>
   ),
   personAdd: (

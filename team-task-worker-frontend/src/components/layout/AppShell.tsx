@@ -9,8 +9,11 @@ type AppShellProps = {
 export function AppShell({ children }: AppShellProps) {
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <Sidebar />
-      <main className="content">
+      <main className="content" id="main-content" tabIndex={-1}>
         <Topbar />
         {children}
       </main>
