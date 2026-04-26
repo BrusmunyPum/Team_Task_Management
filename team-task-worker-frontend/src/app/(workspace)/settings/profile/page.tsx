@@ -22,7 +22,7 @@ export default function ProfilePage() {
         </div>
         <div className="profile-hero-actions">
           <span className="pill progress">Owner</span>
-          <span className="pill calm">Asia/Bangkok</span>
+          <span className="pill calm">Cambodia</span>
           <span className="pill neutral">Active today</span>
         </div>
       </section>

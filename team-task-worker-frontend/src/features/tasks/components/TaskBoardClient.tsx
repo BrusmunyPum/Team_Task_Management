@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { AppIcon } from "@/components/ui/AppIcon";
 import { Avatar } from "@/components/ui/Avatar";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { isBeforeToday } from "@/lib/date";
 import { tasks, teamMembers } from "@/lib/mock-data";
 
 const columns = [
@@ -27,7 +28,7 @@ function priorityTone(priority: string) {
 }
 
 function isPastDue(dueDate: string) {
-  return new Date(dueDate) < new Date("2026-04-26T00:00:00");
+  return isBeforeToday(dueDate);
 }
 
 export function TaskBoardClient() {

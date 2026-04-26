@@ -4,42 +4,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AppIcon } from "@/components/ui/AppIcon";
-import {
-  ActionModalButton,
-  type ActionKind,
-} from "@/components/ui/ActionModalButton";
+import { ActionModalButton } from "@/components/ui/ActionModalButton";
 import { getRouteMeta } from "@/lib/navigation";
 import { activity, teamMembers } from "@/lib/mock-data";
+import { hiddenActionRoutes, pageActions } from "@/lib/page-actions";
 import { routes } from "@/lib/routes";
-
-type ActionEntry = {
-  kind: ActionKind;
-  label: string;
-};
-
-const actions: Record<string, ActionEntry> = {
-  [routes.dashboard]: { kind: "task", label: "New Task" },
-  [routes.projects]: { kind: "project", label: "Create Project" },
-  [routes.tasks]: { kind: "task", label: "New Task" },
-  [routes.myTasks]: { kind: "task", label: "New Task" },
-  [routes.members]: { kind: "member", label: "Add Member" },
-  [routes.calendar]: { kind: "event", label: "Add Event" },
-  [routes.timeline]: { kind: "milestone", label: "Add Milestone" },
-  [routes.analytics]: { kind: "task", label: "New Task" },
-  [routes.activity]: { kind: "comment", label: "Add Comment" },
-  [routes.workload]: { kind: "member", label: "Add Member" },
-  [routes.files]: { kind: "file", label: "Upload File" },
-  [routes.automation]: { kind: "automation", label: "New Rule" },
-  [routes.clients]: { kind: "client", label: "New Review" },
-};
-
-/** Routes where we hide the topbar action button */
-const hiddenActionRoutes: Set<string> = new Set([routes.profile, routes.workspaceSettings]);
 
 export function Topbar() {
   const pathname = usePathname();
   const meta = getRouteMeta(pathname);
-  const action = actions[pathname];
+  const action = pageActions[pathname];
   const showAction = !hiddenActionRoutes.has(pathname) && action;
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [query, setQuery] = useState("");

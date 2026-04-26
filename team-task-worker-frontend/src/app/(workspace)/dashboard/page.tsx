@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { ActionModalButton } from "@/components/ui/ActionModalButton";
 import { AppIcon } from "@/components/ui/AppIcon";
+import { isBeforeToday } from "@/lib/date";
 import { activity, calendarEvents, projects, tasks, teamMembers } from "@/lib/mock-data";
 import { routes } from "@/lib/routes";
 
-const today = new Date("2026-04-26T00:00:00");
 const openTasks = tasks.filter((task) => task.status !== "Done");
 const activeProjects = projects.filter((project) => project.status === "Active");
 const reviewTasks = tasks.filter((task) => task.status === "Review");
-const overdueTasks = openTasks.filter((task) => new Date(task.dueDate) < today);
+const overdueTasks = openTasks.filter((task) => isBeforeToday(task.dueDate));
 const averageProgress = Math.round(
   projects.reduce((total, project) => total + project.progress, 0) / projects.length,
 );

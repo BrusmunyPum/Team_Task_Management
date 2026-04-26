@@ -20,7 +20,7 @@ export const navigationGroups: NavigationGroup[] = [
       { label: "Dashboard", icon: "dashboard", href: routes.dashboard },
       { label: "Projects", icon: "workspace", href: routes.projects },
       { label: "Tasks", icon: "tasks", href: routes.tasks },
-      { label: "My Tasks", icon: "tasks", href: routes.myTasks, badge: "6" },
+      { label: "My Tasks", icon: "tasks", href: routes.myTasks },
     ],
   },
   {

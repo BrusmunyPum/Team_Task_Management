@@ -1065,6 +1065,21 @@ textarea.form-input {
   font-weight: 900;
 }
 
+.timeline-item > div {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.timeline-item strong,
+.timeline-item small {
+  display: block;
+}
+
+.timeline-item strong {
+  line-height: 1.35;
+}
+
 .chart-bars {
   display: flex;
   align-items: end;

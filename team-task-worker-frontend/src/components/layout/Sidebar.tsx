@@ -5,9 +5,28 @@ import { usePathname } from "next/navigation";
 import { routes } from "@/lib/routes";
 import { AppIcon } from "@/components/ui/AppIcon";
 import { isActiveRoute, navigationGroups } from "@/lib/navigation";
+import { tasks } from "@/lib/mock-data";
+
+const currentUser = {
+  id: "maya",
+  name: "Maya Chen",
+  role: "Owner",
+  initials: "MC",
+};
 
 export function Sidebar() {
   const pathname = usePathname();
+  const myOpenTaskCount = tasks.filter(
+    (task) => task.assigneeId === currentUser.id && task.status !== "Done",
+  ).length;
+
+  function getNavigationBadge(label: string) {
+    if (label === "My Tasks" && myOpenTaskCount > 0) {
+      return String(myOpenTaskCount);
+    }
+
+    return undefined;
+  }
 
   return (
     <aside className="sidebar" aria-label="Primary navigation">
@@ -27,6 +46,7 @@ export function Sidebar() {
             <p className="nav-group-label">{group.label}</p>
             {group.items.map((item) => {
               const active = isActiveRoute(pathname, item.href);
+              const badge = item.badge ?? getNavigationBadge(item.label);
 
               return (
                 <Link
@@ -39,7 +59,7 @@ export function Sidebar() {
                     <AppIcon name={item.icon} />
                   </span>
                   <span className="nav-label">{item.label}</span>
-                  {item.badge && <span className="nav-badge">{item.badge}</span>}
+                  {badge && <span className="nav-badge">{badge}</span>}
                 </Link>
               );
             })}
@@ -49,10 +69,10 @@ export function Sidebar() {
 
       <div className="sidebar-user">
         <Link href={routes.profile} className="sidebar-user-info">
-          <span className="avatar">MC</span>
+          <span className="avatar">{currentUser.initials}</span>
           <div>
-            <strong>Maya Chen</strong>
-            <small>Owner</small>
+            <strong>{currentUser.name}</strong>
+            <small>{currentUser.role}</small>
           </div>
         </Link>
         <Link href={routes.login} className="icon-button" aria-label="Logout" title="Logout">
