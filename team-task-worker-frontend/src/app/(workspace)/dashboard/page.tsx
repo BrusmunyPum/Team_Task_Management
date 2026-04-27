@@ -77,106 +77,108 @@ export default function DashboardPage() {
         ))}
       </section>
 
-      <section className="split-layout">
-        <div className="panel">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Status breakdown</p>
-              <h2>Task flow</h2>
+      <section className="dashboard-content-grid">
+        <div className="dashboard-main-column">
+          <div className="panel">
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">Status breakdown</p>
+                <h2>Task flow</h2>
+              </div>
+              <Link href={routes.tasks}>Open board</Link>
             </div>
-            <Link href={routes.tasks}>Open board</Link>
+
+            <div className="status-grid">
+              {taskFlow.map((item) => (
+                <article className="flow-card" key={item.title}>
+                  <span className={`flow-card__dot ${item.tone}`} aria-hidden="true" />
+                  <div>
+                    <strong>{item.count}</strong>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
 
-          <div className="status-grid">
-            {taskFlow.map((item) => (
-              <article className="flow-card" key={item.title}>
-                <span className={`flow-card__dot ${item.tone}`} aria-hidden="true" />
-                <div>
-                  <strong>{item.count}</strong>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </div>
-              </article>
-            ))}
+          <div className="panel">
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">Upcoming</p>
+                <h2>Deadlines</h2>
+              </div>
+            </div>
+
+            <div className="activity-list">
+              {calendarEvents.slice(0, 3).map((event) => {
+                const owner = teamMembers.find((member) => member.id === event.ownerId);
+
+                return (
+                <article key={event.title}>
+                  <span className={`avatar ${owner?.tone ?? ""}`}>
+                    {owner?.initials}
+                  </span>
+                  <div>
+                    <strong>{event.title}</strong>
+                    <small>{event.type}, due {event.date}.</small>
+                  </div>
+                </article>
+              )})}
+            </div>
           </div>
         </div>
 
-        <aside className="panel">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Quick links</p>
-              <h2>Next actions</h2>
+        <aside className="dashboard-side-column">
+          <div className="panel">
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">Quick links</p>
+                <h2>Next actions</h2>
+              </div>
+            </div>
+
+            <div className="dashboard-action-grid">
+              <ActionModalButton action="project" variant="secondary" />
+              <ActionModalButton action="task" variant="secondary" label="Create Task" />
+              <Link className="secondary-action" href={routes.members}>
+                <AppIcon name="groupAdd" />
+                View team
+              </Link>
+            </div>
+            <div className="dashboard-next-card">
+              <span className="pill info">Recommended</span>
+              <strong>Review task filters before adding more dashboard work.</strong>
+              <p>{reviewTasks.length} item is already waiting for feedback, so this is the cleanest next step.</p>
             </div>
           </div>
 
-          <div className="dashboard-action-grid">
-            <ActionModalButton action="project" variant="secondary" />
-            <ActionModalButton action="task" variant="secondary" label="Create Task" />
-            <Link className="secondary-action" href={routes.members}>
-              <AppIcon name="groupAdd" />
-              View team
-            </Link>
-          </div>
-          <div className="dashboard-next-card">
-            <span className="pill info">Recommended</span>
-            <strong>Review task filters before adding more dashboard work.</strong>
-            <p>{reviewTasks.length} item is already waiting for feedback, so this is the cleanest next step.</p>
+          <div className="panel">
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">Recent activity</p>
+                <h2>Team updates</h2>
+              </div>
+            </div>
+
+            <div className="activity-list">
+              {activity.slice(0, 3).map((item) => {
+                const owner = teamMembers.find((member) => member.id === item.memberId);
+
+                return (
+                <article key={item.title}>
+                  <span className={`avatar ${owner?.tone ?? ""}`}>
+                    {owner?.initials}
+                  </span>
+                  <div>
+                    <strong>{item.title}</strong>
+                    <small>{item.description}</small>
+                  </div>
+                </article>
+              )})}
+            </div>
           </div>
         </aside>
-      </section>
-
-      <section className="split-layout">
-        <div className="panel">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Upcoming</p>
-              <h2>Deadlines</h2>
-            </div>
-          </div>
-
-          <div className="activity-list">
-            {calendarEvents.slice(0, 3).map((event) => {
-              const owner = teamMembers.find((member) => member.id === event.ownerId);
-
-              return (
-              <article key={event.title}>
-                <span className={`avatar ${owner?.tone ?? ""}`}>
-                  {owner?.initials}
-                </span>
-                <div>
-                  <strong>{event.title}</strong>
-                  <small>{event.type}, due {event.date}.</small>
-                </div>
-              </article>
-            )})}
-          </div>
-        </div>
-
-        <div className="panel">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Recent activity</p>
-              <h2>Team updates</h2>
-            </div>
-          </div>
-
-          <div className="activity-list">
-            {activity.slice(0, 3).map((item) => {
-              const owner = teamMembers.find((member) => member.id === item.memberId);
-
-              return (
-              <article key={item.title}>
-                <span className={`avatar ${owner?.tone ?? ""}`}>
-                  {owner?.initials}
-                </span>
-                <div>
-                  <strong>{item.title}</strong>
-                  <small>{item.description}</small>
-                </div>
-              </article>
-            )})}
-          </div>
-        </div>
       </section>
     </div>
   );

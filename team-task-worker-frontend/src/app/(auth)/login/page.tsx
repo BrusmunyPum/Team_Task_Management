@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AppIcon } from "@/components/ui/AppIcon";
+import { LoginForm } from "@/features/auth/components/LoginForm";
 import { routes } from "@/lib/routes";
 
 export default function LoginPage() {
@@ -33,34 +34,7 @@ export default function LoginPage() {
               <h2>Sign in</h2>
             </div>
           </div>
-          <form className="form-stack">
-            <label className="form-label">
-              Email
-              <input
-                className="form-input"
-                type="email"
-                defaultValue="maya@teamtask.test"
-              />
-            </label>
-            <label className="form-label">
-              Password
-              <input
-                className="form-input"
-                type="password"
-                defaultValue="password"
-              />
-            </label>
-            <Link className="primary-action" href={routes.dashboard}>
-              <AppIcon name="login" />
-              Sign in
-            </Link>
-            <p className="form-help">
-              Do not have an account?{" "}
-              <Link className="auth-link" href={routes.register}>
-                Register
-              </Link>
-            </p>
-          </form>
+          <LoginForm />
         </div>
       </section>
     </main>

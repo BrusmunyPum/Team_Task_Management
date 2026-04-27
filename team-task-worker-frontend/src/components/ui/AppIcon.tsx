@@ -17,12 +17,14 @@ export type AppIconName =
   | "hub"
   | "login"
   | "more"
+  | "moon"
   | "personAdd"
   | "playlistAdd"
   | "rocket"
   | "save"
   | "search"
   | "searchOff"
+  | "sun"
   | "tasks"
   | "workspace";
 
@@ -141,6 +143,7 @@ const paths: Record<AppIconName, React.ReactNode> = {
       <circle cx="19" cy="12" r="1.5" />
     </>
   ),
+  moon: <path d="M21 13a8 8 0 1 1-10-10 7 7 0 0 0 10 10Z" />,
   personAdd: (
     <>
       <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -179,6 +182,12 @@ const paths: Record<AppIconName, React.ReactNode> = {
       <path d="M10.6 10.6a3 3 0 0 0 3.8 3.8" />
       <path d="M17 17a7 7 0 0 1-10-10" />
       <path d="M9.5 4.2A7 7 0 0 1 19 11c0 1.2-.3 2.4-.8 3.4" />
+    </>
+  ),
+  sun: (
+    <>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
     </>
   ),
   tasks: (

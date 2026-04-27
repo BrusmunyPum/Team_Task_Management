@@ -45,14 +45,58 @@
   --primary-hsl: 228 71% 45%;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-brand-50: #172554;
+    --color-brand-100: #1e3a8a;
+    --color-brand-500: #7ea2ff;
+    --color-brand-600: #9db7ff;
+    --color-brand-700: #c7d7ff;
+    --color-accent-teal: #5eead4;
+    --color-accent-cyan: #123a42;
+    --color-surface: #101722;
+    --color-surface-raised: #0b111d;
+    --color-surface-overlay: #1a2535;
+    --color-border: #273548;
+    --color-border-strong: #3b4b61;
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #d7e0ec;
+    --color-text-muted: #99a7ba;
+    --color-status-todo: #a9b4c5;
+    --color-status-progress: #8fb0ff;
+    --color-status-review: #f5b95f;
+    --color-status-done: #5ee3ae;
+    --color-status-danger: #ff8a8a;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.38);
+    --shadow-md: 0 16px 34px -22px rgba(0, 0, 0, 0.82);
+    --shadow-lg: 0 28px 58px -30px rgba(0, 0, 0, 0.88);
+  }
+}
+
 [data-theme="dark"] {
   color-scheme: dark;
-  --color-surface: #111827;
-  --color-surface-raised: #0b1120;
-  --color-surface-overlay: #1f2937;
-  --color-border: #243041;
-  --color-border-strong: #334155;
+  --color-brand-50: #172554;
+  --color-brand-100: #1e3a8a;
+  --color-brand-500: #7ea2ff;
+  --color-brand-600: #9db7ff;
+  --color-brand-700: #c7d7ff;
+  --color-accent-teal: #5eead4;
+  --color-accent-cyan: #123a42;
+  --color-surface: #101722;
+  --color-surface-raised: #0b111d;
+  --color-surface-overlay: #1a2535;
+  --color-border: #273548;
+  --color-border-strong: #3b4b61;
   --color-text-primary: #f8fafc;
-  --color-text-secondary: #cbd5e1;
-  --color-text-muted: #94a3b8;
+  --color-text-secondary: #d7e0ec;
+  --color-text-muted: #99a7ba;
+  --color-status-todo: #a9b4c5;
+  --color-status-progress: #8fb0ff;
+  --color-status-review: #f5b95f;
+  --color-status-done: #5ee3ae;
+  --color-status-danger: #ff8a8a;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.38);
+  --shadow-md: 0 16px 34px -22px rgba(0, 0, 0, 0.82);
+  --shadow-lg: 0 28px 58px -30px rgba(0, 0, 0, 0.88);
 }

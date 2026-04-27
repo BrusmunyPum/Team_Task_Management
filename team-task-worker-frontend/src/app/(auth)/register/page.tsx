@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AppIcon } from "@/components/ui/AppIcon";
+import { RegisterForm } from "@/features/auth/components/RegisterForm";
 import { routes } from "@/lib/routes";
 
 export default function RegisterPage() {
@@ -33,41 +34,7 @@ export default function RegisterPage() {
               <h2>Account details</h2>
             </div>
           </div>
-          <form className="form-stack">
-            <label className="form-label">
-              Full name
-              <input className="form-input" type="text" defaultValue="Maya Chen" />
-            </label>
-            <label className="form-label">
-              Email
-              <input
-                className="form-input"
-                type="email"
-                defaultValue="maya@teamtask.test"
-              />
-            </label>
-            <label className="form-label">
-              Password
-              <input className="form-input" type="password" defaultValue="password" />
-            </label>
-            <label className="form-label">
-              Confirm password
-              <input className="form-input" type="password" defaultValue="password" />
-            </label>
-            <p className="form-help">
-              Use at least 8 characters with a number and a letter.
-            </p>
-            <Link className="primary-action" href={routes.onboarding}>
-              <AppIcon name="personAdd" />
-              Create account
-            </Link>
-            <p className="form-help">
-              Already registered?{" "}
-              <Link className="auth-link" href={routes.login}>
-                Sign in
-              </Link>
-            </p>
-          </form>
+          <RegisterForm />
         </div>
       </section>
     </main>
